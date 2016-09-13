@@ -1,5 +1,5 @@
+io/github/ilkgunel/mongodbsampleproject/pojo/Record.class
+io/github/ilkgunel/mongodbsampleproject/pojo/Address.class
 io/github/ilkgunel/mongodbsampleproject/DataInsert.class
-io/github/ilkgunel/mongodbsampleproject/SelectRecord.class
-io/github/ilkgunel/mongodbsampleproject/Record.class
-io/github/ilkgunel/mongodbsampleproject/Address.class
+io/github/ilkgunel/mongodbsampleproject/database/AccessMongoDB.class
 io/github/ilkgunel/mongodbsampleproject/DataSelect.class

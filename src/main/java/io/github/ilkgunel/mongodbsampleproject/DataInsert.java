@@ -9,6 +9,7 @@ import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
+import io.github.ilkgunel.mongodbsampleproject.database.AccessMongoDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -96,8 +97,10 @@ public class DataInsert extends HttpServlet {
         String street = request.getParameter("street");
         String borough = request.getParameter("borough");
         String city = request.getParameter("city");
+        
+        AccessMongoDB accessMongoDB = new AccessMongoDB();
 
-        getMongoDatabase().getCollection("Records").insertOne(
+        accessMongoDB.getMongoDatabase().getCollection("Records").insertOne(
                 new Document().append("id", id)
                 .append("name", name)
                 .append("surname", surname)
@@ -109,12 +112,6 @@ public class DataInsert extends HttpServlet {
         );
         
         
-    }
-
-    private MongoDatabase getMongoDatabase() {
-        MongoClient mongoClient = new MongoClient("localhost", 27017);
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("MongoDB");
-        return mongoDatabase;
     }
 
     /**

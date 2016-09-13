@@ -12,6 +12,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import io.github.ilkgunel.mongodbsampleproject.database.AccessMongoDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -36,7 +37,8 @@ public class DataSelect extends HttpServlet {
             throws ServletException, IOException {
         List<Record> list = new ArrayList<>();
         //FindIterable<Document> result = getMongoDatabase().getCollection("Records").find(new Document("name","Can"));
-        FindIterable<Document> result = getMongoDatabase().getCollection("Records").find();
+        AccessMongoDB accessMongoDB = new AccessMongoDB();
+        FindIterable<Document> result = accessMongoDB.getMongoDatabase().getCollection("Records").find();
         
         Record record = new Record();
         MongoCursor<Document> cursor = result.iterator();
@@ -71,12 +73,6 @@ public class DataSelect extends HttpServlet {
         
         RequestDispatcher view = request.getRequestDispatcher("/listRecors.jsp");
 	view.forward(request, response);
-    }
-    
-    private MongoDatabase getMongoDatabase() {
-        MongoClient mongoClient = new MongoClient("localhost", 27017);
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("MongoDB");
-        return mongoDatabase;
     }
 
 }
