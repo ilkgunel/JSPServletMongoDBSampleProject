@@ -14,7 +14,7 @@ import com.mongodb.client.MongoDatabase;
  */
 public class AccessMongoDB {
     public MongoDatabase getMongoDatabase() {
-        MongoClient mongoClient = new MongoClient("localhost", 27017);
+        MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
         MongoDatabase mongoDatabase = mongoClient.getDatabase("MongoDB");
         //mongoClient.close();
         return mongoDatabase;

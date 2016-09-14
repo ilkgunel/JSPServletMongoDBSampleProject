@@ -31,7 +31,7 @@ import org.bson.Document;
  */
 @WebServlet(name = "select", urlPatterns = {"/select"})
 public class DataSelect extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,40 +39,38 @@ public class DataSelect extends HttpServlet {
         //FindIterable<Document> result = getMongoDatabase().getCollection("Records").find(new Document("name","Can"));
         AccessMongoDB accessMongoDB = new AccessMongoDB();
         FindIterable<Document> result = accessMongoDB.getMongoDatabase().getCollection("Records").find();
+
         
-        Record record = new Record();
         MongoCursor<Document> cursor = result.iterator();
-        
+
         while (cursor.hasNext()) {
-        Document document = cursor.next();
-        System.out.println(document.get("id"));
-        System.out.println(document.get("name"));
-        System.out.println(document.get("surname"));
-        Document address = (Document) document.get("adress");
-        System.out.println(address.get("street"));
-        System.out.println(address.get("borough"));
-        System.out.println(address.get("city"));
-        
-        Address address1 = new Address();
-        address1.setStreet((String)address.get("street"));
-        address1.setBorough((String)address.getString("borough"));
-        address1.setCity((String)address.getString("city"));
-        
-        record.setId((String)document.get("id"));
-        record.setName((String)document.get("name"));
-        record.setSurname((String)document.get("surname"));
-        record.setAddress(address1);
-        
-        System.out.println(record.getId());
-        System.out.println(record.getName());
-        
-        list.add(record);
+            Document document = cursor.next();
+            System.out.println(document.get("_id"));
+            System.out.println(document.get("name"));
+            System.out.println(document.get("surname"));
+            Document address = (Document) document.get("adress");
+            System.out.println(address.get("street"));
+            System.out.println(address.get("borough"));
+            System.out.println(address.get("city"));
+
+            Address address1 = new Address();
+            address1.setStreet((String) address.get("street"));
+            address1.setBorough((String) address.getString("borough"));
+            address1.setCity((String) address.getString("city"));
+
+            Record record = new Record();
+            record.setId(document.get("_id").toString());
+            record.setName((String) document.get("name"));
+            record.setSurname((String) document.get("surname"));
+            record.setAddress(address1);
+
+            list.add(record);
         }
-        
+
         request.setAttribute("records", list);
-        
+
         RequestDispatcher view = request.getRequestDispatcher("/listRecors.jsp");
-	view.forward(request, response);
+        view.forward(request, response);
     }
 
 }
