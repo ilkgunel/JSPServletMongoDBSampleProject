@@ -68,7 +68,9 @@ public class DataSelect extends HttpServlet {
         }
 
         request.setAttribute("records", list);
-
+        
+        accessMongoDB.closeMongoClient();
+        
         RequestDispatcher view = request.getRequestDispatcher("/listRecors.jsp");
         view.forward(request, response);
     }

@@ -13,10 +13,16 @@ import com.mongodb.client.MongoDatabase;
  * @author ilkaygunel
  */
 public class AccessMongoDB {
+    MongoClient mongoClient;
+    
     public MongoDatabase getMongoDatabase() {
-        MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
+        mongoClient = new MongoClient();
         MongoDatabase mongoDatabase = mongoClient.getDatabase("MongoDB");
         //mongoClient.close();
         return mongoDatabase;
+    }
+    
+    public void closeMongoClient(){
+        mongoClient.close();
     }
 }

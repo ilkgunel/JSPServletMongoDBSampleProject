@@ -29,10 +29,10 @@ import org.bson.types.ObjectId;
  */
 @WebServlet(name = "dataUpdate", urlPatterns = {"/dataUpdate"})
 public class DataUpdate extends HttpServlet {
-    String updateMessage = "";
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String updateMessage = "";
         String recordId = request.getParameter("id");
         ObjectId objectId = new ObjectId(recordId);
 
@@ -62,15 +62,17 @@ public class DataUpdate extends HttpServlet {
 
         request.setAttribute("updateRecord", updateRecord);
         request.setAttribute("updateMessage", updateMessage);
-
+        
+        accessMongoDB.closeMongoClient();
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("/recordUpdate.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
+        String updateMessage = "";
         
-
         String recordId = request.getParameter("id");
         ObjectId objectId = new ObjectId(recordId);
 
@@ -92,6 +94,8 @@ public class DataUpdate extends HttpServlet {
         }
         
         request.setAttribute("updateMessage", updateMessage);
+        
+        accessMongoDB.closeMongoClient();
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/recordUpdate.jsp");
         dispatcher.forward(request, response);

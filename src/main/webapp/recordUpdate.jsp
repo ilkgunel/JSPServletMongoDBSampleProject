@@ -43,7 +43,7 @@
                     <td><input type="submit" value="Kaydı Güncelle"</td>
                 </tr>
                 <tr>   
-                    <td><input type="text" value="${updateMessage}"</td>
+                    <td>${updateMessage}</td>
                     <td></td>
                 </tr>
             </table>
