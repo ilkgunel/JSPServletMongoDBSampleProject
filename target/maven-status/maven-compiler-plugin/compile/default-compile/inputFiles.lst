@@ -2,6 +2,7 @@
 /Users/ilkaygunel/NetBeansProjects/JSPServletMongoDBSampleProject/JSPServletMongoDBSampleProject/src/main/java/io/github/ilkgunel/operations/DataSelect.java
 /Users/ilkaygunel/NetBeansProjects/JSPServletMongoDBSampleProject/JSPServletMongoDBSampleProject/src/main/java/io/github/ilkgunel/operations/DataUpdate.java
 /Users/ilkaygunel/NetBeansProjects/JSPServletMongoDBSampleProject/JSPServletMongoDBSampleProject/src/main/java/io/github/ilkgunel/database/AccessMongoDB.java
+/Users/ilkaygunel/NetBeansProjects/JSPServletMongoDBSampleProject/JSPServletMongoDBSampleProject/src/main/java/io/github/ilkgunel/filter/TurkishCharacterFilter.java
 /Users/ilkaygunel/NetBeansProjects/JSPServletMongoDBSampleProject/JSPServletMongoDBSampleProject/src/main/java/io/github/ilkgunel/operations/DataDelete.java
 /Users/ilkaygunel/NetBeansProjects/JSPServletMongoDBSampleProject/JSPServletMongoDBSampleProject/src/main/java/io/github/ilkgunel/operations/DataInsert.java
 /Users/ilkaygunel/NetBeansProjects/JSPServletMongoDBSampleProject/JSPServletMongoDBSampleProject/src/main/java/io/github/ilkgunel/pojo/Address.java

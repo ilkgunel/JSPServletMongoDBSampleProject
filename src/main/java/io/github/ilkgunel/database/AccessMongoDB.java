@@ -19,8 +19,7 @@ public class AccessMongoDB {
     public MongoCollection getCollection() {
         mongoClient = new MongoClient();
         MongoDatabase mongoDatabase = mongoClient.getDatabase("MongoDB");
-        //mongoClient.close();
-        return mongoDatabase.getCollection("Records");
+        return mongoDatabase.getCollection("Members");
     }
     
     public void closeMongoClient(){

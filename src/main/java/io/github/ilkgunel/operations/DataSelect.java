@@ -7,14 +7,10 @@ package io.github.ilkgunel.operations;
 
 import io.github.ilkgunel.pojo.Address;
 import io.github.ilkgunel.pojo.Record;
-import com.mongodb.Block;
-import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
 import io.github.ilkgunel.database.AccessMongoDB;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;

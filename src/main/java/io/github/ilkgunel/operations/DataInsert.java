@@ -28,7 +28,6 @@ public class DataInsert extends HttpServlet {
         //processRequest(request, response);
         String insertMessage = "";
         
-        String id = request.getParameter("id");
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String street = request.getParameter("street");
@@ -39,7 +38,7 @@ public class DataInsert extends HttpServlet {
 
         try {
             accessMongoDB.getCollection().insertOne(
-                    new Document().append("id", id)
+                    new Document()
                     .append("name", name)
                     .append("surname", surname)
                     .append("adress",
