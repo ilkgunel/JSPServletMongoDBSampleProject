@@ -1,6 +1,7 @@
-io/github/ilkgunel/mongodbsampleproject/DataUpdate.class
-io/github/ilkgunel/mongodbsampleproject/pojo/Record.class
-io/github/ilkgunel/mongodbsampleproject/pojo/Address.class
-io/github/ilkgunel/mongodbsampleproject/DataInsert.class
-io/github/ilkgunel/mongodbsampleproject/database/AccessMongoDB.class
-io/github/ilkgunel/mongodbsampleproject/DataSelect.class
+io/github/ilkgunel/database/AccessMongoDB.class
+io/github/ilkgunel/pojo/Record.class
+io/github/ilkgunel/operations/DataInsert.class
+io/github/ilkgunel/operations/DataUpdate.class
+io/github/ilkgunel/pojo/Address.class
+io/github/ilkgunel/operations/DataSelect.class
+io/github/ilkgunel/operations/DataDelete.class

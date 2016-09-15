@@ -4,7 +4,7 @@
     Author     : ilkaygunel
 --%>
 
-<%@page import="io.github.ilkgunel.mongodbsampleproject.pojo.Record"%>
+<%@page import="io.github.ilkgunel.pojo.Record"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -39,12 +39,23 @@
                         <a href="<c:url value="dataUpdate">
                            <c:param name="id" value="${record.id}"/>
                            </c:url>">
-                        Kaydı Güncelle
+                            <input type="submit" onclick="return  confirm('Kaydı Güncellemek İstediğinize Emin misiniz?')" value="Kaydı Güncelle" style="background-color: aqua">
+                        </a>
+                    </center>
+                    <br>
+                    <center>
+                        <a href="<c:url value="dataDelete">
+                           <c:param name="id" value="${record.id}"/>
+                           </c:url>">
+                            <input type="submit" onclick="return confirm('Kaydı Silmek İstediğinize Emin misiniz?')" value="Kaydı Sil" style="background-color: red">
                         </a>
                     </center>
                     </td>
                 </tr>
             </c:forEach>
+                <tr>
+                    <td>${operationMessage}</td>
+                </tr>
         </table>
 
 </body>

@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.ilkgunel.mongodbsampleproject;
+package io.github.ilkgunel.operations;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.UpdateResult;
-import io.github.ilkgunel.mongodbsampleproject.database.AccessMongoDB;
-import io.github.ilkgunel.mongodbsampleproject.pojo.Address;
-import io.github.ilkgunel.mongodbsampleproject.pojo.Record;
+import io.github.ilkgunel.database.AccessMongoDB;
+import io.github.ilkgunel.pojo.Address;
+import io.github.ilkgunel.pojo.Record;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -37,9 +37,8 @@ public class DataUpdate extends HttpServlet {
         ObjectId objectId = new ObjectId(recordId);
 
         AccessMongoDB accessMongoDB = new AccessMongoDB();
-        MongoDatabase database = accessMongoDB.getMongoDatabase();
 
-        FindIterable<Document> searchResult = database.getCollection("Records").find(new Document("_id", objectId));
+        FindIterable<Document> searchResult = accessMongoDB.getCollection().find(new Document("_id", objectId));
 
         MongoCursor<Document> cursor = searchResult.iterator();
 
@@ -77,9 +76,8 @@ public class DataUpdate extends HttpServlet {
         ObjectId objectId = new ObjectId(recordId);
 
         AccessMongoDB accessMongoDB = new AccessMongoDB();
-        MongoDatabase database = accessMongoDB.getMongoDatabase();
         try {
-            UpdateResult updateResult = database.getCollection("Records").updateOne(new Document("_id", objectId), 
+            UpdateResult updateResult = accessMongoDB.getCollection().updateOne(new Document("_id", objectId), 
                     new Document("$set",new Document()
                     .append("name", request.getParameter("name"))
                     .append("surname", request.getParameter("surname"))

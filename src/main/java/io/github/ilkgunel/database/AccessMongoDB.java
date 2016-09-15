@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.ilkgunel.mongodbsampleproject.database;
+package io.github.ilkgunel.database;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 /**
@@ -15,11 +16,11 @@ import com.mongodb.client.MongoDatabase;
 public class AccessMongoDB {
     MongoClient mongoClient;
     
-    public MongoDatabase getMongoDatabase() {
+    public MongoCollection getCollection() {
         mongoClient = new MongoClient();
         MongoDatabase mongoDatabase = mongoClient.getDatabase("MongoDB");
         //mongoClient.close();
-        return mongoDatabase;
+        return mongoDatabase.getCollection("Records");
     }
     
     public void closeMongoClient(){

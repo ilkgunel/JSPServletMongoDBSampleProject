@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.ilkgunel.mongodbsampleproject;
+package io.github.ilkgunel.operations;
 
-import io.github.ilkgunel.mongodbsampleproject.pojo.Address;
-import io.github.ilkgunel.mongodbsampleproject.pojo.Record;
+import io.github.ilkgunel.pojo.Address;
+import io.github.ilkgunel.pojo.Record;
 import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import io.github.ilkgunel.mongodbsampleproject.database.AccessMongoDB;
+import io.github.ilkgunel.database.AccessMongoDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.bson.Document;
 
 /**
@@ -35,10 +36,20 @@ public class DataSelect extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String operationMessage = "";
+        HttpSession session = request.getSession();
+        operationMessage = (String) session.getAttribute("operationMessage");
+        
+        if (operationMessage == null || operationMessage.equals("")) {
+            operationMessage = "";
+        }
+        
+        session.removeAttribute("operationMessage");
+        
         List<Record> list = new ArrayList<>();
         //FindIterable<Document> result = getMongoDatabase().getCollection("Records").find(new Document("name","Can"));
         AccessMongoDB accessMongoDB = new AccessMongoDB();
-        FindIterable<Document> result = accessMongoDB.getMongoDatabase().getCollection("Records").find();
+        FindIterable<Document> result = accessMongoDB.getCollection().find();
 
         
         MongoCursor<Document> cursor = result.iterator();
@@ -68,6 +79,7 @@ public class DataSelect extends HttpServlet {
         }
 
         request.setAttribute("records", list);
+        request.setAttribute("operationMessage", operationMessage);
         
         accessMongoDB.closeMongoClient();
         
